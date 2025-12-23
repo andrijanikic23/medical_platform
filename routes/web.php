@@ -1,11 +1,15 @@
 <?php
 
+use App\Http\Controllers\AdminPanelController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/admin', [AdminPanelController::class, 'users'])->name('admin.users');
+Route::patch('/admin/changed-role/{user}', [AdminPanelController::class, 'changeRole'])->name('admin.role');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
